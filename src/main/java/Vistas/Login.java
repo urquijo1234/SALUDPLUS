@@ -1,18 +1,24 @@
 package Vistas;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
+
     // Atributos para almacenar el correo y la contraseña durante el registro
-    private final String correoRegistro;
-    private final String contraseñaRegistro;
+    private final  String correoRegistro;
+    private final  String contraseñaRegistro;
 
     public Login(Register aThis, boolean par, String correoRegistro, String contraseñaRegistro) {
         initComponents();
         this.correoRegistro = correoRegistro;
         this.contraseñaRegistro = contraseñaRegistro;
+         
     }
+    
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,6 +36,9 @@ public class Login extends javax.swing.JFrame {
         campocontraseñalogin = new javax.swing.JPasswordField();
         btn_inicio = new javax.swing.JButton();
         checkbox = new javax.swing.JCheckBox();
+        label_recuperacion = new javax.swing.JLabel();
+        label_ir_a_registro = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -62,16 +71,16 @@ public class Login extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addGap(129, 129, 129)
                 .addComponent(jLabel1)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40))
+                .addGap(52, 52, 52))
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -106,6 +115,20 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        label_recuperacion.setForeground(new java.awt.Color(0, 51, 255));
+        label_recuperacion.setText("¿Olvidaste tu correo o contraseña?");
+
+        label_ir_a_registro.setForeground(new java.awt.Color(0, 0, 255));
+        label_ir_a_registro.setText("¿No tienes una cuenta? Registrate");
+        label_ir_a_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_ir_a_registroMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setText("Iniciar Sesion");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,13 +146,21 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(checkbox)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
-                                .addComponent(campocorreo)
-                                .addComponent(jLabel3)
-                                .addComponent(campocontraseñalogin, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(label_recuperacion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checkbox))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campocorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campocontraseñalogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(label_ir_a_registro)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,8 +169,12 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_ir_a_registro)
+                .addGap(105, 105, 105)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campocorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,10 +183,12 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campocontraseñalogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkbox)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkbox)
+                    .addComponent(label_recuperacion))
                 .addGap(30, 30, 30)
                 .addComponent(btn_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,15 +217,20 @@ public class Login extends javax.swing.JFrame {
         // Validar si el correo y la contraseña coinciden con los del registro
         if (correoLogin.equals(correoRegistro) && contraseñaLogin.equals(contraseñaRegistro)) {
             // Iniciar sesión
+             Lobby lobby = new Lobby();
             JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+            this.dispose();
+            lobby.setLocationRelativeTo(null);
+            lobby.setVisible(true);        
             
             // Realizar las acciones necesarias después de iniciar sesión
         } else {
             // Mostrar un mensaje de error si el correo o la contraseña son incorrectos
             JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
         }
- 
-
+        
+        
+       
 
     }//GEN-LAST:event_btn_inicioActionPerformed
 
@@ -199,6 +241,13 @@ public class Login extends javax.swing.JFrame {
             campocontraseñalogin.setEchoChar('*');
         }
     }//GEN-LAST:event_checkboxActionPerformed
+
+    private void label_ir_a_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ir_a_registroMouseClicked
+        Register registro = new Register();
+        this.dispose();;
+        registro.setLocationRelativeTo(null);
+        registro.setVisible(true);
+    }//GEN-LAST:event_label_ir_a_registroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -212,10 +261,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel label_ir_a_registro;
+    private javax.swing.JLabel label_recuperacion;
     // End of variables declaration//GEN-END:variables
 }

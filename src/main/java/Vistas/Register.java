@@ -1,14 +1,18 @@
 package Vistas;
 
 import javax.swing.JOptionPane;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Register extends javax.swing.JFrame {
 // Atributos para almacenar el correo y la contraseña durante el registro
+
     private String correoRegistro;
     private String contraseñaRegistro;
 
     public Register() {
         initComponents();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -376,12 +380,25 @@ public class Register extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor complete todos los campos correctamente y asegúrese de que las contraseñas coincidan.", "Error en el registro", JOptionPane.ERROR_MESSAGE);
             return; // Detener el proceso de registro
         }
-        
+        // Obtener el nombre del usuario del campo correspondiente
+        String nombreUsuario = camponombre.getText();
+
+        // Guardar el nombre del usuario en un archivo de texto
+        try {
+            FileWriter writer = new FileWriter("Pacientes.txt", true); // true para agregar al final del archivo
+            writer.write(nombreUsuario + "\n"); // Escribir el nombre del usuario en una nueva línea
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al guardar el nombre de usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         // Almacenar el correo y la contraseña durante el registro
         correoRegistro = campocorreo.getText();
         contraseñaRegistro = new String(campocontraseña.getPassword());
 
-        Login login = new Login(this, true, campocorreo.getText(), new String(campocontraseña.getPassword()));   
+        Login login = new Login(this, true, campocorreo.getText(), new String(campocontraseña.getPassword()));
         JOptionPane.showMessageDialog(this, "Registro completado existosamente");
         this.dispose();
         login.setLocationRelativeTo(null);
