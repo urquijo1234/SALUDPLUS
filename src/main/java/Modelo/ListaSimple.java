@@ -3,7 +3,7 @@ package Modelo;
 import java.util.*;
 import java.io.Serializable;
 
-public class ListaSimple<T> implements Lista<T> {
+public class ListaSimple<T> implements Lista.Interface_ListaSimple<T>  {
 
     private Nodo<T> cabeza;
 
@@ -13,7 +13,6 @@ public class ListaSimple<T> implements Lista<T> {
     }
 
     // Método para agregar al final
-    @Override
     public void append(T valor) {
         if (cabeza == null) {
             cabeza = new Nodo<>(valor);
@@ -27,14 +26,12 @@ public class ListaSimple<T> implements Lista<T> {
     }
 
     // Método para agregar al principio
-    @Override
     public void prepend(T valor) {
         Nodo<T> nuevoNodo = new Nodo<>(valor, cabeza);
         cabeza = nuevoNodo;
     }
 
     // Método para insertar en una posición específica
-    @Override
     public void insert(T valor, int indice) {
         // Validamos que el índice esté dentro del rango válido
         if (indice < 0 || indice > size()) {
@@ -63,7 +60,6 @@ public class ListaSimple<T> implements Lista<T> {
     }
 
     // Método para obtener el valor en una posición específica
-    @Override
     public T get_element_at(int indice) {
         // Validamos que el índice esté dentro del rango válido
         if (indice < 0 || indice >= size()) {
