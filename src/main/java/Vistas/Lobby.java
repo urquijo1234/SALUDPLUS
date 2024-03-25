@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Lobby extends javax.swing.JFrame {
-
+    
     DefaultTableModel modelo = new DefaultTableModel();
     private Cola<String> colaEspera; // Agrega esta variable para mantener la cola de espera
     // HashMap para mantener un registro de la cantidad de citas generadas por especialidad
     private HashMap<String, Integer> contadorCitasPorEspecialidad;
-
+    
     public Lobby(Cola<String> colaEspera) {
         initComponents();
         cargarDatosEnCombobox(cbo_box_pacientes, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\Pacientes.txt");
@@ -30,7 +30,7 @@ public class Lobby extends javax.swing.JFrame {
         this.colaEspera = colaEspera; // Inicializa la cola de espera
 
     }
-
+    
     public Lobby() {
         initComponents();
         cargarDatosEnCombobox(cbo_box_pacientes, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\Pacientes.txt");
@@ -39,7 +39,7 @@ public class Lobby extends javax.swing.JFrame {
         this.colaEspera = colaEspera; // Inicializa la cola de espera
 
     }
-
+    
     DefaultTableModel model;
     String paciente = "";
     String especialidad = "";
@@ -48,7 +48,7 @@ public class Lobby extends javax.swing.JFrame {
     int costo;
     String ticket = "";
     String flag = "";
-
+    
     public void titulosTabla() {
         model = (DefaultTableModel) jTable1.getModel();
         Object[] titulos = new Object[]{"Paciente", "Especialidad", "Profesional", "Motivo", "Costo", "  Ticket", "Estado"};
@@ -94,7 +94,6 @@ public class Lobby extends javax.swing.JFrame {
         boton_registro = new javax.swing.JButton();
         boton_taquilla = new javax.swing.JButton();
         boton_llamado = new javax.swing.JButton();
-        boton_registro_examenes = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         combobox_especialidades = new javax.swing.JComboBox<>();
@@ -143,7 +142,7 @@ public class Lobby extends javax.swing.JFrame {
             }
         });
 
-        boton_taquilla.setText("TAQUILLA DE PAGOS");
+        boton_taquilla.setText("GESTION DE PAGOS Y EXAMENES");
         boton_taquilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_taquillaActionPerformed(evt);
@@ -157,44 +156,37 @@ public class Lobby extends javax.swing.JFrame {
             }
         });
 
-        boton_registro_examenes.setText("REGISTRO DE EXAMENES");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(boton_registro)
-                                .addGap(70, 70, 70)
-                                .addComponent(boton_taquilla)
-                                .addGap(327, 327, 327)
-                                .addComponent(boton_registro_examenes))
-                            .addComponent(jLabel1)))
+                        .addComponent(boton_registro)
+                        .addGap(146, 146, 146)
+                        .addComponent(boton_taquilla)
+                        .addGap(49, 49, 49)
+                        .addComponent(boton_llamado))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(393, 393, 393)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(boton_llamado)
-                            .addComponent(jLabel2))))
-                .addContainerGap(331, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel2)))
+                .addContainerGap(464, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_registro)
                     .addComponent(boton_taquilla)
-                    .addComponent(boton_llamado)
-                    .addComponent(boton_registro_examenes))
+                    .addComponent(boton_llamado))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -269,7 +261,6 @@ public class Lobby extends javax.swing.JFrame {
 
         jLabel7.setText("COLA ESPERA");
 
-        campo_cola_de_espera_lobby.setBackground(new java.awt.Color(255, 255, 255));
         campo_cola_de_espera_lobby.setColumns(20);
         campo_cola_de_espera_lobby.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         campo_cola_de_espera_lobby.setRows(5);
@@ -370,7 +361,7 @@ public class Lobby extends javax.swing.JFrame {
         registro.setVisible(true);
 
     }//GEN-LAST:event_boton_registroActionPerformed
-
+    
     private void cargarDatosEnCombobox(JComboBox<String> comboBox, String filePath) {
         File file = new File(filePath);
         try {
@@ -384,52 +375,51 @@ public class Lobby extends javax.swing.JFrame {
             Logger.getLogger(Lobby.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 
     private void combobox_profesionalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_profesionalesActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_combobox_profesionalesActionPerformed
 
     private void radioboton_examenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioboton_examenActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_radioboton_examenActionPerformed
 
     private void radioboton_controlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioboton_controlActionPerformed
-        // TODO add your handling code here:
+    
     }//GEN-LAST:event_radioboton_controlActionPerformed
 
     private void radioboton_valoracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioboton_valoracionActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_radioboton_valoracionActionPerformed
-
+    
     public DefaultTableModel obtenerTabla() {
         return (DefaultTableModel) jTable1.getModel();
     }
-
+    
 
     private void boton_taquillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_taquillaActionPerformed
-            // Verificar si hay elementos en la cola de espera
-    if (!campo_cola_de_espera_lobby.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Hay citas en la cola de espera. Ingrese al modulo de llamado", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        // Verificar si hay elementos en la cola de espera
+        if (!campo_cola_de_espera_lobby.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Hay citas en la cola de espera. Ingrese al modulo de llamado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Si no hay elementos en la cola de espera, ir a la taquilla
-    Taquilla taquillaTabla = new Taquilla(obtenerTabla());
-    taquillaTabla.restaurarContenidoCola(getContenidoColaEspera()); // Asegurarse de que se restaure el contenido del TextArea
-    JOptionPane.showMessageDialog(this, "Ingresando a la taquilla de pagos");
-    this.dispose();
-    taquillaTabla.setLocationRelativeTo(null);
-    taquillaTabla.setVisible(true);
+        // Si no hay elementos en la cola de espera, ir a la taquilla
+        Taquilla taquillaTabla = new Taquilla(obtenerTabla());
+        taquillaTabla.restaurarContenidoCola(getContenidoColaEspera()); // Asegurarse de que se restaure el contenido del TextArea
+        JOptionPane.showMessageDialog(this, "Ingresando al modulo de gestion de pagos y examenes");
+        this.dispose();
+        taquillaTabla.setLocationRelativeTo(null);
+        taquillaTabla.setVisible(true);
 
     }//GEN-LAST:event_boton_taquillaActionPerformed
-
     
     public void agregarContenidoColaEspera(String nuevoContenido) {
-    campo_cola_de_espera_lobby.append(nuevoContenido);
-}
+        campo_cola_de_espera_lobby.append(nuevoContenido);
+    }
     private void boton_solicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_solicitudActionPerformed
-
+        
         paciente = (String) cbo_box_pacientes.getSelectedItem().toString();
         especialidad = combobox_especialidades.getSelectedItem().toString();
         if (combobox_especialidades.getSelectedItem().equals("MEDICINA GENERAL")) {
@@ -445,12 +435,12 @@ public class Lobby extends javax.swing.JFrame {
         } else if (radioboton_examen.isSelected()) {
             motivo = "Examen";
             costo = -1;
-
+            
         } else if (radioboton_valoracion.isSelected()) {
             motivo = "Valoracion";
         }
         generadorTicket();
-
+        
         if (motivo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No seleccionaste motivo de la cita", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -461,15 +451,15 @@ public class Lobby extends javax.swing.JFrame {
         } else {
             flag = "NO PAGO";
         }
-
+        
         model.addRow(new Object[]{paciente, especialidad, profesional, motivo, costo, ticket, flag});
-
+        
 
     }//GEN-LAST:event_boton_solicitudActionPerformed
     public void generadorTicket() {
         String especialidad = (String) combobox_especialidades.getSelectedItem();
         String ticketPrefix = "";
-
+        
         if (especialidad.equals("MEDICINA GENERAL")) {
             ticketPrefix = "MG";
         } else if (especialidad.equals("PEDIATRIA")) {
@@ -499,7 +489,7 @@ public class Lobby extends javax.swing.JFrame {
         } else if (especialidad.equals("INTERNISTA")) {
             ticketPrefix = "INT";
         }
-
+        
         if (radioboton_control.isSelected()) {
             ticket = "CONT_" + ticketPrefix;
         } else if (radioboton_examen.isSelected()) {
@@ -516,9 +506,9 @@ public class Lobby extends javax.swing.JFrame {
 
         // Generar el ticket con el formato especificado
         ticket = ticket + String.format("%03d", secuencia);
-
+        
     }
-
+    
     private int obtenerNumeroSecuencia(String especialidad) {
         // Verificar si ya se ha generado un ticket para esta especialidad
         if (contadorCitasPorEspecialidad.containsKey(especialidad)) {
@@ -533,28 +523,34 @@ public class Lobby extends javax.swing.JFrame {
             return 1;
         }
     }
-
+    
     public void setContenidoColaEspera(String contenido) {
         campo_cola_de_espera_lobby.setText(contenido);
     }
-
+    
     public String getContenidoColaEspera() {
         return campo_cola_de_espera_lobby.getText();
     }
-        
+    
     private void combobox_especialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_especialidadesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combobox_especialidadesActionPerformed
 
     private void boton_llamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_llamadoActionPerformed
-           Llamado llamadoframe = new Llamado(getContenidoColaEspera());
-           this.dispose();
-    llamadoframe.setLocationRelativeTo(null);
-    llamadoframe.setVisible(true);
+        
+        
+        
+        Llamado llamadoframe = new Llamado(getContenidoColaEspera());
+        this.dispose();
+        llamadoframe.setLocationRelativeTo(null);
+        llamadoframe.setVisible(true);
     }//GEN-LAST:event_boton_llamadoActionPerformed
 
     
-      public static void main(String args[]) {
+    public DefaultTableModel guardarTabla() {
+    return (DefaultTableModel) jTable1.getModel();
+}    
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -592,7 +588,6 @@ public class Lobby extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_llamado;
     private javax.swing.JButton boton_registro;
-    private javax.swing.JButton boton_registro_examenes;
     private javax.swing.JButton boton_solicitud;
     private javax.swing.JButton boton_taquilla;
     private javax.swing.ButtonGroup buttonGroup1;

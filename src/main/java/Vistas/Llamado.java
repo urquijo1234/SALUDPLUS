@@ -3,9 +3,10 @@ package Vistas;
 import Modelo.Cola;
 import Modelo.ListaDobleEnlazada;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Llamado extends javax.swing.JFrame {
-
+  private StringBuilder colaEsperaText = new StringBuilder(); // Variable para almacenar los datos de la cola de espera
 
  private String contenidoColaEspera;
     public Llamado(String contenidoColaEsperaLobby) {
@@ -191,6 +192,7 @@ public class Llamado extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_llamadoActionPerformed
 
     private void boton_retorno_lobbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_retorno_lobbyActionPerformed
+
         // Verificar si la cola de espera está vacía
     if (contenidoColaEspera.isEmpty()) {
         // Si la cola de espera está vacía, realizar la acción de regreso
