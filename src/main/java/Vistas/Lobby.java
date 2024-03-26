@@ -1,22 +1,23 @@
 package Vistas;
 
 import Modelo.Cola;
-
 import java.io.BufferedReader;
 import java.io.File;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Lobby extends javax.swing.JFrame {
-    
+ 
     DefaultTableModel modelo = new DefaultTableModel();
     private Cola<String> colaEspera; // Agrega esta variable para mantener la cola de espera
     // HashMap para mantener un registro de la cantidad de citas generadas por especialidad
@@ -24,21 +25,26 @@ public class Lobby extends javax.swing.JFrame {
     
     public Lobby(Cola<String> colaEspera) {
         initComponents();
+        this.setLocationRelativeTo(this);
         cargarDatosEnCombobox(cbo_box_pacientes, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\Pacientes.txt");
         titulosTabla();
         contadorCitasPorEspecialidad = new HashMap<>();
         this.colaEspera = colaEspera; // Inicializa la cola de espera
+                pintarImagen(label_logo1, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\src\\main\\java\\resources\\logo1.png");
+      
 
     }
     
     public Lobby() {
         initComponents();
+         this.setLocationRelativeTo(this);
         cargarDatosEnCombobox(cbo_box_pacientes, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\Pacientes.txt");
         titulosTabla();
         contadorCitasPorEspecialidad = new HashMap<>();
         this.colaEspera = colaEspera; // Inicializa la cola de espera
-
+        pintarImagen(label_logo1, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\src\\main\\java\\resources\\logo1.png");
     }
+  
     
     DefaultTableModel model;
     String paciente = "";
@@ -55,6 +61,14 @@ public class Lobby extends javax.swing.JFrame {
         model.setColumnIdentifiers(titulos);
     }
 
+    
+    
+    private void pintarImagen(JLabel lbl, String ruta){
+     ImageIcon image = new ImageIcon(ruta);
+     Icon icon = new ImageIcon(image.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
+     lbl.setIcon(icon);
+     this.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,7 +103,7 @@ public class Lobby extends javax.swing.JFrame {
         buttonGroup16 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        label_logo1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         boton_registro = new javax.swing.JButton();
         boton_taquilla = new javax.swing.JButton();
@@ -128,11 +142,13 @@ public class Lobby extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1.setText("SALUDPLUS");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        label_logo1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        label_logo1.setForeground(new java.awt.Color(51, 153, 255));
+        label_logo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setText("Modulo de Gestion de citas");
 
         boton_registro.setText("REGISTRAR OTRO PACIENTE");
@@ -163,31 +179,34 @@ public class Lobby extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boton_registro)
+                    .addComponent(label_logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(boton_registro)
-                        .addGap(146, 146, 146)
+                        .addGap(76, 76, 76)
                         .addComponent(boton_taquilla)
-                        .addGap(49, 49, 49)
+                        .addGap(68, 68, 68)
                         .addComponent(boton_llamado))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(241, 241, 241)
+                        .addGap(44, 44, 44)
                         .addComponent(jLabel2)))
-                .addContainerGap(464, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(29, 29, 29))
+                    .addComponent(label_logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_registro)
-                    .addComponent(boton_taquilla)
-                    .addComponent(boton_llamado))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(boton_llamado)
+                    .addComponent(boton_taquilla))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
@@ -248,6 +267,9 @@ public class Lobby extends javax.swing.JFrame {
             }
         });
 
+        cbo_box_pacientes.setToolTipText("Seleccione el paciente:");
+
+        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -261,6 +283,7 @@ public class Lobby extends javax.swing.JFrame {
 
         jLabel7.setText("COLA ESPERA");
 
+        campo_cola_de_espera_lobby.setBackground(new java.awt.Color(255, 255, 255));
         campo_cola_de_espera_lobby.setColumns(20);
         campo_cola_de_espera_lobby.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         campo_cola_de_espera_lobby.setRows(5);
@@ -278,7 +301,6 @@ public class Lobby extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -300,8 +322,9 @@ public class Lobby extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(radioboton_examen)
                             .addComponent(radioboton_control)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,14 +356,16 @@ public class Lobby extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,7 +431,7 @@ public class Lobby extends javax.swing.JFrame {
         }
 
         // Si no hay elementos en la cola de espera, ir a la taquilla
-        Taquilla taquillaTabla = new Taquilla(obtenerTabla());
+        Gestion taquillaTabla = new Gestion(obtenerTabla());
         taquillaTabla.restaurarContenidoCola(getContenidoColaEspera()); // Asegurarse de que se restaure el contenido del TextArea
         JOptionPane.showMessageDialog(this, "Ingresando al modulo de gestion de pagos y examenes");
         this.dispose();
@@ -611,7 +636,6 @@ public class Lobby extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combobox_especialidades;
     private javax.swing.JComboBox<String> combobox_profesionales;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -629,6 +653,7 @@ public class Lobby extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel label_logo1;
     private javax.swing.JRadioButton radioboton_control;
     private javax.swing.JRadioButton radioboton_examen;
     private javax.swing.JRadioButton radioboton_valoracion;

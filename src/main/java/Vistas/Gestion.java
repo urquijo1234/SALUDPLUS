@@ -4,30 +4,39 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.Cola;
 import Modelo.Cola.Nodo;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-public class Taquilla extends javax.swing.JFrame {
+public class Gestion extends javax.swing.JFrame {
 
     DefaultTableModel model;
     private Cola<String> colaEspera = new Cola<>(); // Instancia de la cola de espera
     private StringBuilder colaEsperaText = new StringBuilder(); // Variable para almacenar los datos de la cola de espera
 
-    // Método para agregar un ticket pagado a la cola de espera  (Taquilla)
+    // Método para agregar un ticket pagado a la cola de espera  (Gestion)
     public void agregarTicketColaEspera(String identificador) {
         colaEspera.enqueue(identificador); // Agregar el identificador a la cola de espera
 
         actualizarTextFieldCola();
-//        // Actualizar el contenido de colaEsperaText
-//        colaEsperaText.append(identificador).append("\n");
-//        campo_cola_de_espera.setText(colaEsperaText.toString());
+
     }
 
-    public Taquilla(DefaultTableModel model) {
+    public Gestion(DefaultTableModel model) {
         initComponents();
+        this.setLocationRelativeTo(this);
         this.model = model;
         tabla_taquilla.setModel(model);
+        pintarImagen(label_logo, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\src\\main\\java\\resources\\logo1.png");
 
     }
-
+private void pintarImagen(JLabel lbl, String ruta){
+     ImageIcon image = new ImageIcon(ruta);
+     Icon icon = new ImageIcon(image.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
+     lbl.setIcon(icon);
+     this.repaint();
+    }
     // Restaurar el contenido de la cola de espera cuando vuelves al frame
     public void restaurarContenidoCola(String contenido) {
         campo_cola_de_espera.setText(contenido);
@@ -40,8 +49,8 @@ public class Taquilla extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         boton_lobby = new javax.swing.JButton();
+        label_logo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         campo_ticket = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -60,10 +69,6 @@ public class Taquilla extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("MODULO DE GESTION DE PAGOS Y EXAMENES");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel3.setText("SALUDPLUS");
-
         boton_lobby.setText("VOLVER AL LOBBY");
         boton_lobby.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,31 +76,35 @@ public class Taquilla extends javax.swing.JFrame {
             }
         });
 
+        label_logo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(label_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel3)
-                        .addGap(156, 156, 156)
+                        .addGap(120, 120, 120)
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(417, 417, 417)
+                        .addGap(285, 285, 285)
                         .addComponent(boton_lobby)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boton_lobby)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(boton_lobby)
+                        .addGap(6, 6, 6)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -173,9 +182,9 @@ public class Taquilla extends javax.swing.JFrame {
                             .addComponent(campo_ticket))
                         .addGap(118, 118, 118)
                         .addComponent(boton_pago)
-                        .addGap(84, 84, 84)
+                        .addGap(66, 66, 66)
                         .addComponent(boton_registro_examenes)
-                        .addGap(58, 58, 58)
+                        .addGap(69, 69, 69)
                         .addComponent(boton_autorizacion_examenes)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -209,7 +218,7 @@ public class Taquilla extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,33 +296,6 @@ public class Taquilla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ticket no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-//// Obtener el identificador ingresado por el usuario
-//    String identificador = campo_ticket.getText();
-//
-//    // Buscar el identificador en la tabla del Frame2
-//    for (int i = 0; i < tabla_taquilla.getRowCount(); i++) {
-//        Object ticketObject = tabla_taquilla.getValueAt(i, 5); // Obtener el objeto en la celda
-//        String ticket = ticketObject != null ? ticketObject.toString() : ""; // Convertir a String
-//        if (ticket.equals(identificador)) {
-//            // Verificar si el ticket ya está marcado como "Pago"
-//            Object estadoObject = tabla_taquilla.getValueAt(i, 6); // Suponiendo que la columna 6 contiene el estado de los tickets
-//            String estado = estadoObject != null ? estadoObject.toString() : "";
-//            if (!estado.equals("Pago")) {
-//                // Cambiar el estado del ticket a "Pago" Y el costo a 0 puesto que ya está pagado
-//                tabla_taquilla.setValueAt(0, i, 4);
-//                tabla_taquilla.setValueAt("Pago", i, 6);
-//                model.fireTableDataChanged();
-//
-//                agregarTicketColaEspera(identificador);
-//               
-//            } else {
-//                JOptionPane.showMessageDialog(this, "El ticket ya está marcado como 'Pago'", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//            return; // Terminar la búsqueda una vez que se encuentre el ticket
-//        }
-//    }
-//    // Mostrar un mensaje si no se encuentra el ticket
-//    JOptionPane.showMessageDialog(this, "Ticket no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
 
     }//GEN-LAST:event_boton_pagoActionPerformed
     public void actualizarTextFieldCola() {
@@ -473,12 +455,12 @@ public class Taquilla extends javax.swing.JFrame {
     private javax.swing.JTextField campo_ticket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label_logo;
     public javax.swing.JTable tabla_taquilla;
     // End of variables declaration//GEN-END:variables
 }

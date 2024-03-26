@@ -2,6 +2,10 @@ package Vistas;
 
 import Modelo.Cola;
 import Modelo.ListaDobleEnlazada;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -10,10 +14,19 @@ public class Llamado extends javax.swing.JFrame {
 
  private String contenidoColaEspera;
     public Llamado(String contenidoColaEsperaLobby) {
-        initComponents();         
+        initComponents();    
+        setLocationRelativeTo(this);
+        pintarImagen(label_logo, "D:\\Usuario\\Documents\\NetBeansProjects\\SALUDPLUS\\src\\main\\java\\resources\\logo1.png");
         campo_cola_de_espera_llamado.setText(contenidoColaEsperaLobby);
         contenidoColaEspera = contenidoColaEsperaLobby;
       
+    }
+    
+    private void pintarImagen(JLabel lbl, String ruta){
+     ImageIcon image = new ImageIcon(ruta);
+     Icon icon = new ImageIcon(image.getImage().getScaledInstance(lbl.getWidth(), lbl.getHeight(), Image.SCALE_DEFAULT));
+     lbl.setIcon(icon);
+     this.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -22,9 +35,9 @@ public class Llamado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         boton_retorno_lobby = new javax.swing.JButton();
+        label_logo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         campo_cola_de_espera_llamado = new javax.swing.JTextArea();
@@ -36,10 +49,6 @@ public class Llamado extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 102, 255));
-        jLabel1.setText("SALUDPLUS");
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("MODULO DE LLAMADO DE PACIENTES");
 
@@ -50,44 +59,47 @@ public class Llamado extends javax.swing.JFrame {
             }
         });
 
+        label_logo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(label_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel1)
-                        .addGap(114, 114, 114)
+                        .addGap(77, 77, 77)
                         .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(404, 404, 404)
+                        .addGap(221, 221, 221)
                         .addComponent(boton_retorno_lobby)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boton_retorno_lobby)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(boton_retorno_lobby)
+                        .addGap(14, 14, 14))
+                    .addComponent(label_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel3.setText("PACIENTES EN COLA:");
 
+        campo_cola_de_espera_llamado.setEditable(false);
+        campo_cola_de_espera_llamado.setBackground(new java.awt.Color(255, 255, 255));
         campo_cola_de_espera_llamado.setColumns(20);
         campo_cola_de_espera_llamado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         campo_cola_de_espera_llamado.setRows(5);
-        campo_cola_de_espera_llamado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        campo_cola_de_espera_llamado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         campo_cola_de_espera_llamado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         campo_cola_de_espera_llamado.setEnabled(false);
         jScrollPane1.setViewportView(campo_cola_de_espera_llamado);
@@ -100,10 +112,12 @@ public class Llamado extends javax.swing.JFrame {
             }
         });
 
+        pantalla_tickets.setEditable(false);
+        pantalla_tickets.setBackground(new java.awt.Color(255, 255, 255));
         pantalla_tickets.setColumns(20);
         pantalla_tickets.setFont(new java.awt.Font("Trebuchet MS", 1, 48)); // NOI18N
         pantalla_tickets.setRows(5);
-        pantalla_tickets.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pantalla_tickets.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pantalla_tickets.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         pantalla_tickets.setEnabled(false);
         jScrollPane2.setViewportView(pantalla_tickets);
@@ -122,11 +136,11 @@ public class Llamado extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(46, 46, 46)
                         .addComponent(boton_llamado)))
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,10 +151,10 @@ public class Llamado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boton_llamado)
-                .addGap(0, 133, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,7 +167,9 @@ public class Llamado extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,13 +229,13 @@ public class Llamado extends javax.swing.JFrame {
     private javax.swing.JButton boton_llamado;
     private javax.swing.JButton boton_retorno_lobby;
     private javax.swing.JTextArea campo_cola_de_espera_llamado;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel label_logo;
     private javax.swing.JTextArea pantalla_tickets;
     // End of variables declaration//GEN-END:variables
 }
